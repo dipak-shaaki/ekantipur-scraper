@@ -27,9 +27,12 @@ def scrape_entertainment_news(page):
 
         title = title_el.text_content().strip()
 
-        # Image URL — lazy loaded, so use data-src not src
-        img_el = card.query_selector(".category-image img.lazy")
-        image_url = img_el.get_attribute("data-src") if img_el else None
+        # Image — try data-src first (lazy), fallback to src (already loaded)
+        img_el = card.query_selector(".category-image img")
+        if img_el:
+            image_url = img_el.get_attribute("data-src") or img_el.get_attribute("src")
+        else:
+            image_url = None
 
         # Author — null if not found
         author_el = card.query_selector(".author-name a")
@@ -77,14 +80,12 @@ def scrape_cartoon(page):
     # Use the alt text as the title
     title = alt_text.strip() if alt_text else None
 
-    # Author is always "अविन" (Avin) — the cartoonist
-    # We extract it from alt text: "अविनको कार्टुन" → "अविन"
+    # Extract author from alt text: "अविनको कार्टुन" → "अविन"
     author = None
     if alt_text and "को कार्टुन" in alt_text:
-        # Extract the word before "को कार्टुन"
         parts = alt_text.split("को कार्टुन")
         if parts:
-            author = parts[0].split()[-1]  # last word before "को कार्टुन"
+            author = parts[0].split()[-1]
 
     print(f"  Cartoon title: {title}")
     print(f"  Cartoon author: {author}")
