@@ -1,0 +1,69 @@
+Prompts used during development — ekantipur-scraper
+
+Note: Setup, installation, and basic debugging were done without AI.
+Used Chrome DevTools F12 for selectors, print() for debugging,
+and playwright.dev/python/docs for Playwright methods.
+AI was only used for specific coding problems shown below.
+
+
+PROMPT 1 — Article extraction skeleton
+
+I inspected ekantipur.com/entertainment with DevTools (F12).
+Each article is inside div.category > div.category-inner-wrapper.
+Structure:
+  - Title: .category-description h2 a (text)
+  - Author: .author-name a (text, sometimes missing)
+  - Image: .category-image img (src attribute)
+
+Write a Playwright Python function that loops through div.category
+elements, skips divs with no title (date separators), and extracts
+title, image_url, author from top 5. Return null if author missing.
+
+
+PROMPT 2 — Fixing null image URLs
+
+image_url returns null for all articles. Debugged with
+print(card.inner_html()) and found two patterns:
+
+Pattern 1: <img class="loaded" src="https://assets-cdn-api...">
+Pattern 2: <img class="lazy" data-src="https://assets-cdn-api...">
+
+Current broken line:
+img_el = card.query_selector(".category-image img.lazy")
+image_url = img_el.get_attribute("data-src") if img_el else None
+
+Fix to handle both — try data-src first, fall back to src.
+
+
+PROMPT 3 — Cartoon extraction from Swiper carousel
+
+Found cartoon section on homepage using DevTools.
+It is a Swiper carousel — class .cartoon-slider.
+Today's active slide always has class .swiper-slide-active.
+Inside active slide:
+  - Image URL: a.loading-img href attribute
+  - Title + author: img alt text
+  - Alt text format: "कान्तिपुर दैनिकमा आज प्रकाशित अविनको कार्टुन"
+  - Author is the word before "को कार्टुन"
+
+Write a Playwright function to extract title, image_url, author
+from the active slide. Return null for any missing field.
+
+
+PROMPT 4 — Error handling (Ctrl+K inline edit, ~0 tokens)
+
+Selected scrape_cartoon function in Cursor, pressed Ctrl+K, typed:
+
+"Add try/except so missing elements return null instead of crashing"
+
+
+PROMPT 5 — Nepali text in JSON
+
+output.json saves Nepali as unicode escapes like:
+"\u0928\u0947\u092a\u093e\u0932\u0940" instead of "नेपाली"
+
+Current code:
+with open("output.json", "w") as f:
+    json.dump(output, f, indent=2)
+
+What single parameter fixes this to save readable Nepali text?
