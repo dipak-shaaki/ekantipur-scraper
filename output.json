@@ -1,12 +1,6 @@
 {
   "entertainment_news": [
     {
-      "title": "बर्लिन ब्लग",
-      "image_url": "https://assets-cdn-api.ekantipur.com/thumb.php?src=https://assets-cdn.ekantipur.com/uploads/source/news/kantipur/2026/third-party/55095489784cc028fe33co-2332026112231-1000x0.jpg&w=701&h=0",
-      "category": "मनोरञ्जन",
-      "author": "रीना मोक्तान"
-    },
-    {
       "title": "नेपाली सिनेकर्मी जेनिश पहाडी सिक्किममा सम्मानित",
       "image_url": "https://assets-cdn-api.ekantipur.com/thumb.php?src=https://assets-cdn.ekantipur.com/uploads/source/news/kantipur/2026/third-party/65556548980827222229381569086489619797501n-2332026065258-1000x0.jpg&w=701&h=0",
       "category": "मनोरञ्जन",
@@ -29,6 +23,12 @@
       "image_url": "https://assets-cdn-api.ekantipur.com/thumb.php?src=https://assets-cdn.ekantipur.com/uploads/source/news/kantipur/2026/entertainment/dramacharandashchormandalathetre20260312dsc4404-1332026072101-1000x0.jpg&w=701&h=0",
       "category": "मनोरञ्जन",
       "author": "रीना मोक्तान"
+    },
+    {
+      "title": "भक्तपुर फिल्म महोत्सवमा देखाइए २४ फिल्म",
+      "image_url": "https://assets-cdn-api.ekantipur.com/thumb.php?src=https://assets-cdn.ekantipur.com/uploads/source/news/kantipur/2026/entertainment/65511470512700854084102905307034263224460715n-2132026042246-1000x0.jpg&w=701&h=0",
+      "category": "मनोरञ्जन",
+      "author": "कान्तिपुर संवाददाता"
     }
   ],
   "cartoon_of_the_day": {

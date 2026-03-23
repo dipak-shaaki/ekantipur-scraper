@@ -1,11 +1,5 @@
 Prompts used during development — ekantipur-scraper
 
-Note: Setup, installation, and basic debugging were done without AI.
-Used Chrome DevTools F12 for selectors, print() for debugging,
-and playwright.dev/python/docs for Playwright methods.
-AI was only used for specific coding problems shown below.
-
-
 PROMPT 1 — Article extraction skeleton
 
 I inspected ekantipur.com/entertainment with DevTools (F12).
